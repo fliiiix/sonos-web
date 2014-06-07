@@ -3,6 +3,7 @@
     <!-- Note that all the include helpers are here to demonstrate how they work,
     but only a few of them (or just bootstrap) should be used at the same time, or else you will end up with duplicated includes -->
     <link href="stylesheets/sidebar.css" rel="stylesheet">
+    <link href="stylesheets/site.css" rel="stylesheet">
     <%= bootstrap %>
     <%= bootstrap_css false, "attribute='foo'"%>
     <%= bootstrap_js_legacy %>
@@ -27,7 +28,7 @@
       <div id="page-content-wrapper">
         <div class="content-header">
           <h1>
-            <a id="menu-toggle" href="#" ng-click="toggleMenu()" class="btn btn-default"><i class="icon-reorder"></i></a>
+            <button id="menu-toggle" ng-click="toggleMenu()" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></button>
             Sonos
           </h1>
         </div>
@@ -38,8 +39,11 @@
             <div class="panel panel-default">
               <!-- Default panel contents -->
               <div class="panel-heading">Playlist</div>
-              <!--<div class="panel-body">
-              </div>-->
+              <!-- show only if list selected -->
+              <div class="panel-body">
+                <a href="#" ng-click="play(speaker.uid)"><span class="glyphicon glyphicon-play"></span></a>
+                <a href="#" ng-click="pause(speaker.uid)"><span class="glyphicon glyphicon-pause"></span></a>
+              </div>
               <ul class="list-group">
                 <li ng-repeat="song in playlist.items" class="list-group-item">
                   <img ng-src="{{song.album_art}}"></img>

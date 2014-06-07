@@ -29,6 +29,20 @@ get "/playlist/:id" do
   speaker.queue.to_json
 end
 
+get "/control/:id/:type" do |id, type|
+  puts id
+  speaker = system.speakers.find { |sp| sp.uid == id }
+  
+  if type == "play"
+    speaker.play
+  end
+
+  if type == "pause"
+    speaker.pause
+  end
+end
+
+
 def jsonify(array)
   array.map { |a| JsonifyBase.new(a) }.to_json
 end
