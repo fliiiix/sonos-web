@@ -1,0 +1,58 @@
+<html ng-app="sonos">
+  <head>
+    <!-- Note that all the include helpers are here to demonstrate how they work,
+    but only a few of them (or just bootstrap) should be used at the same time, or else you will end up with duplicated includes -->
+    <link href="stylesheets/sidebar.css" rel="stylesheet">
+    <%= bootstrap %>
+    <%= bootstrap_css false, "attribute='foo'"%>
+    <%= bootstrap_js_legacy %>
+    <%= bootstrap_js %>
+    <script src="javascripts/angular.js"></script>
+    <script src="javascripts/angular-resource.js"></script>
+    <script src="javascripts/application.js"></script>
+    <title>Sonos</title>
+  </head>
+  <body>
+    <div id="wrapper" ng-controller="AppCtrl" ng-class="{true: 'active'}[showMenu]"></i>
+
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand"><a href="#">Devices</a></li>
+          <li ng-repeat="speaker in speakers"><a href="#" ng-click="getPlaylist(speaker.uid)"> {{speaker.name}} </a></li>
+        </ul>
+      </div>
+
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <div class="content-header">
+          <h1>
+            <a id="menu-toggle" href="#" ng-click="toggleMenu()" class="btn btn-default"><i class="icon-reorder"></i></a>
+            Sonos
+          </h1>
+        </div>
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+            <divclass="col-md-12">
+            <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Playlist</div>
+              <!--<div class="panel-body">
+              </div>-->
+              <ul class="list-group">
+                <li ng-repeat="song in playlist.items" class="list-group-item">
+                  <img ng-src="{{song.album_art}}"></img>
+                  {{$index + 1}}) <strong>{{song.title}}</strong> - {{song.artist}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <%= bootstrap_js_default %>
+</body>
+</html>
